@@ -1,4 +1,3 @@
-import datetime
 import json
 from django.test import TestCase
 from api_hostel.quarto_cama.models import quarto
@@ -262,6 +261,15 @@ class QuartoCamaTestCase(TestCase):
 
 
     # #test view
-    # def test_status_code_200(self):
-    #     response = self.client.get('http://127.0.0.1:8000/cama/')
-    #     self.assertEquals(response.status_code, 200)
+    def test_status_code_200(self):
+        response = self.client.get('http://127.0.0.1:8000/cama/')
+        self.assertEquals(response.status_code, 200)
+
+        response = self.client.get('http://127.0.0.1:8000/tipocama/')
+        self.assertEquals(response.status_code, 200)
+
+        response = self.client.get('http://127.0.0.1:8000/quarto/')
+        self.assertEquals(response.status_code, 200)
+
+        response = self.client.get('http://127.0.0.1:8000/tipoquarto/')
+        self.assertEquals(response.status_code, 200)
