@@ -14,7 +14,7 @@ class quarto(models.Model):
     descricao = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nome
+        return self.tipo_quarto, self.nome, self.descricao
 
 
 class tipo_cama(models.Model):
@@ -36,3 +36,6 @@ class cama(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=200)
     valor = models.FloatField()
+
+    def __str__(self):
+        return self.tipo_cama, self.quarto, self.status, self.nome, self.descricao, self.valor
