@@ -166,6 +166,48 @@ class QuartoCamaTestCase(TestCase):
         self.assertEquals(p4.__str__(), (p2, q4, 'o', 'Cama 2', 'Cama 2', 50.00))
 
 
+        #get by id from client - quarto
+        comparative_tipo_id = {
+                "id":1,
+                "nome":"Ar Condicionado"
+            }
+        response_tipo = self.client.get('http://127.0.0.1:8000/tipoquarto/1/')
+        self.assertEquals(response_tipo.status_code, 200)
+        self.assertEquals(json.loads(response_tipo.content), comparative_tipo_id)
+
+        comparative_quarto = {
+                'id':1,
+                'tipo_quarto': 1, 
+                'nome': 'Quarto 1',
+                'descricao': 'Quarto 1 para várias pessoas'
+            }
+        response_quarto = self.client.get('http://127.0.0.1:8000/quarto/1/')
+        self.assertEquals(response_quarto.status_code, 200)
+        self.assertEquals(json.loads(response_quarto.content), comparative_quarto)
+
+        #get by id from client - cama
+        comparative_tipo_id = {
+                "id":1,
+                "nome":"Solteiro"
+            }
+        response_tipo = self.client.get('http://127.0.0.1:8000/tipocama/1/')
+        self.assertEquals(response_tipo.status_code, 200)
+        self.assertEquals(json.loads(response_tipo.content), comparative_tipo_id)
+
+        comparative_cama = {
+                'id':1,
+                'tipo_cama': 1, 
+                'quarto': 1, 
+                'status': 'l',
+                'nome': 'Cama 1',
+                'descricao': 'Cama 1',
+                'valor': 30.00
+            }
+        response_cama = self.client.get('http://127.0.0.1:8000/cama/1/')
+        self.assertEquals(response_cama.status_code, 200)
+        self.assertEquals(json.loads(response_cama.content), comparative_cama)
+
+
 
 
 
@@ -226,30 +268,26 @@ class QuartoCamaTestCase(TestCase):
 
 
 
-    # # def test_put(self):
-    # #     data = {
-    # #         'cpf':'12345678945',
-    # #         'nome': 'vinicius',
-    # #         'email': 'paulo@gmail.com',
-    # #         'telefone':'3578451245',
-    # #         'data_nascimento':'1990-02-27'
-    # #     }
+    def test_put(self):
+        
+        #quarto
+        tipo_quarto.objects.filter(nome='Ar Condicionado').update(nome='Misto')
+        p2 = tipo_quarto.objects.get(nome='Misto')
+        self.assertEquals(p2.__str__(), 'Misto')
 
-    # #     response_put = self.client.put('http://127.0.0.1:8000/cama/1', data=data)
-    # #     self.assertEquals(response_put.status_code, 200)
+        quarto.objects.filter(nome='Quarto 1').update(nome='Quarto Novo')
+        p3 = quarto.objects.get(nome='Quarto Novo')
+        self.assertEquals(p3.__str__(), (p2, 'Quarto Novo', 'Quarto 1 para várias pessoas'))
 
-    # #     p1 = cama.objects.get(cpf = '12345678945')
-    # #     self.assertEquals(p1.__str__(), ('12345678945', 'vinicius', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
+        #cama
+        tipo_cama.objects.filter(nome='Solteiro').update(nome='Queen Size')
+        p4 = tipo_cama.objects.get(nome='Queen Size')
+        self.assertEquals(p4.__str__(), 'Queen Size')
 
+        cama.objects.filter(nome='Cama 1').update(nome='Cama Nova')
+        p5 = cama.objects.get(nome='Cama Nova')
+        self.assertEquals(p5.__str__(), (p4, p3, 'l', 'Cama Nova', 'Cama 1', 30.00))
 
-
-    # # def test_patch(self):
-    # #       data = {'nome': 'Maria'}
-    # #       response = self.client.patch('http://127.0.0.1:8000/cama/1', data=data)
-    # #       self.assertEqual(response.status_code, 200)
-
-    # #       p1 = cama.objects.get(cpf = '12345678945')
-    # #       self.assertEquals(p1.__str__(), ('12345678945', 'Maria', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
 
 
     # # def test_delete(self):
@@ -260,7 +298,7 @@ class QuartoCamaTestCase(TestCase):
 
 
 
-    # #test view
+    #test view
     def test_status_code_200(self):
         response = self.client.get('http://127.0.0.1:8000/cama/')
         self.assertEquals(response.status_code, 200)

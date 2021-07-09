@@ -54,6 +54,22 @@ class HospedeTestCase(TestCase):
         p1 = hospede.objects.get(cpf = '12345678945')
         self.assertEquals(p1.__str__(), ('12345678945', 'Paulo André da Silva', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
 
+
+        #get by id from client
+        comparative_hospede = {
+                'id':1,
+                'cpf':'12345678945', 
+                'nome': 'Paulo André da Silva', 
+                'email': 'paulo@gmail.com',
+                'telefone': '3578451245',
+                'data_nascimento': '1990-02-27'
+            }
+        response_hospede = self.client.get('http://127.0.0.1:8000/hospede/1/')
+        self.assertEquals(response_hospede.status_code, 200)
+        self.assertEquals(json.loads(response_hospede.content), comparative_hospede)
+
+
+
     def test_post(self):
         response = self.client.post('http://127.0.0.1:8000/hospede/', {
             'cpf':'41241241258', 
@@ -64,38 +80,56 @@ class HospedeTestCase(TestCase):
         }, format='json')
         self.assertEquals(response.status_code, 201)
 
-        # p1 = hospede.objects.get(cpf = '41241241258')
-        # self.assertEquals(p1.__str__(), ('41241241258', 'Antonio Marcos', 'antonio@gmail.com', '35999568745', datetime.date(1984, 8, 16)))
+        p1 = hospede.objects.get(cpf = '41241241258')
+        self.assertEquals(p1.__str__(), ('41241241258', 'Antonio Marcos', 'antonio@gmail.com', '35999568745', datetime.date(1984, 8, 16)))
 
-    # def test_put(self):
-    #     data = {
-    #         'cpf':'12345678945',
-    #         'nome': 'vinicius',
-    #         'email': 'paulo@gmail.com',
-    #         'telefone':'3578451245',
-    #         'data_nascimento':'1990-02-27'
-    #     }
+        #without phone post
+        data_hospede = {
+            'cpf':'69565968596', 
+            'nome': 'Antonio Marcos',
+            'email': 'antonio@gmail.com',
+            'telefone': '',
+            'data_nascimento': '1984-08-16'
+        }
+        
+        response = self.client.post('http://127.0.0.1:8000/hospede/', data = data_hospede)
+        self.assertEquals(response.status_code, 201)
 
-        # response_put = self.client.put('http://127.0.0.1:8000/hospede/1', data=data)
-        # self.assertEquals(response_put.status_code, 200)
+        p2 = hospede.objects.get(cpf = '69565968596')
+        self.assertEquals(p2.__str__(), ('69565968596', 'Antonio Marcos', 'antonio@gmail.com', None, datetime.date(1984, 8, 16)))
 
-        # p1 = hospede.objects.get(cpf = '12345678945')
-        # self.assertEquals(p1.__str__(), ('12345678945', 'vinicius', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
+        #bad request post
+        data_hospede = {
+            'cpf':'41241241258', 
+            'nome': 'Antonio Marcos',
+            'email': 'antoniogmail.com',
+            'telefone': '4354645645',
+            'data_nascimento': '1984-08-16'
+        }
+        
+        response = self.client.post('http://127.0.0.1:8000/hospede/', data = data_hospede)
+        self.assertEquals(response.status_code, 400)
 
-        # The object has really been updated
-        # company.refresh_from_db()
-        # for field_name in data.keys():
-        #     self.assertEqual(getattr(company, field_name), data[field_name])
 
 
 
-    # def test_patch(self):
-    #       data = {'nome': 'Maria'}
-    #       response = self.client.patch('http://127.0.0.1:8000/hospede/1', data=data)
-    #       self.assertEqual(response.status_code, 200)
+    def test_put(self):
 
-    #       p1 = hospede.objects.get(cpf = '12345678945')
-    #       self.assertEquals(p1.__str__(), ('12345678945', 'Maria', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
+        #normal put
+        hospede.objects.filter(cpf='12345678945').update(nome='vinicius')
+        p2 = hospede.objects.get(cpf = '12345678945')
+        self.assertEquals(p2.__str__(), ('12345678945', 'vinicius', 'paulo@gmail.com', '3578451245', datetime.date(1990, 2, 27)))
+
+        #without phone
+        hospede.objects.filter(cpf = '12345678945').update(telefone=None)
+        p2 = hospede.objects.get(cpf = '12345678945')
+        self.assertEquals(p2.__str__(), ('12345678945', 'vinicius', 'paulo@gmail.com', None, datetime.date(1990, 2, 27)))
+
+
+
+
+
+
 
 
     # def test_delete(self):
