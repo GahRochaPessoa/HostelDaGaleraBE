@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'api_hostel.hospede',
     'api_hostel.funcionario',
     'api_hostel.quarto_cama',
+    'api_hostel.reserva',
 ]
 
 MIDDLEWARE = [
