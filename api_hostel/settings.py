@@ -26,7 +26,7 @@ SECRET_KEY = django_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'b7acca1f8b99.ngrok.io']
 
 
 # Application definition
@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': postgre_key,
         'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'PORT': postgre_port,
     }
 }
 
