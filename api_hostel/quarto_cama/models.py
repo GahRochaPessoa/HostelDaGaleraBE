@@ -36,3 +36,6 @@ class cama(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=200)
     valor = models.FloatField()
+
+    def __str__(self):
+        return  self.nome + " do Quarto " + self.quarto.nome
