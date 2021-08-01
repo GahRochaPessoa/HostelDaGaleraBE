@@ -9,6 +9,7 @@ Comandos para rodar o projeto depois de clonado:
 - Instalar as dependências do projeto com o comando:
     - '''pip install -r requirements.txt'''
 
+para colocar o Projeto no ar use os seguintes comandos:
 - python manage.py makemigrations
 - python manage.py migrate
 - py manage.py loaddata api_hostel/fixtures/initial_data.json
