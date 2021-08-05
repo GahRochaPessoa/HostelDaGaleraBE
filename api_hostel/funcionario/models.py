@@ -15,6 +15,12 @@ class funcionario(models.Model):
     email = models.EmailField(max_length=250)
     telefone = models.CharField(max_length=15, null=True)
     data_nascimento = models.DateField()
+<<<<<<< HEAD
     
     def __str__(self):
         return self.nome
+=======
+
+    def __str__ (self):
+        return self.tipo_funcionario, self.cpf, self.nome, self.email, self.telefone, self.data_nascimento
+>>>>>>> 506ca0e53c66e0103bb029371344008b7b590f55

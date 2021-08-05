@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = django_key
+SECRET_KEY = 'django-insecure-e0%4d06tox^=_lpzx7-o4!+z(3!f)_9p21wo@i+ncmw-s82zv$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,9 +84,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hostel_galera',
         'USER': 'postgres',
-        'PASSWORD': postgre_key,
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
-        'PORT': postgre_port,
+        'PORT': '5432',
     }
 }
 
