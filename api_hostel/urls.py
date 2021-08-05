@@ -35,5 +35,5 @@ router.register(r'reservacama',reservacamaViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include(router.urls))
+    path('',include(router.urls)),
 ]
