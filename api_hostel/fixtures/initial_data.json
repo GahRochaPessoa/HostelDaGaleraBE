@@ -1,0 +1,106 @@
+[{
+        "model": "hospede.hospede",
+        "fields": {
+            "cpf": "12121212",
+            "nome": "Joao",
+            "email": "joao@joao.com",
+            "telefone": "1199999999",
+            "data_nascimento": "1998-10-03"
+        }
+    },
+    {
+        "model": "funcionario.tipo_funcionario",
+        "fields": {
+            "nome": "Gerente"
+        }
+    },
+    {
+        "model": "funcionario.tipo_funcionario",
+        "fields": {
+            "nome": "Recepcionista"
+        }
+    },
+    {
+        "model": "funcionario.funcionario",
+        "fields": {
+            "tipo_funcionario": 1,
+            "cpf": "123123123",
+            "nome": "julia",
+            "email": "julia@julia.com",
+            "telefone": "123456",
+            "data_nascimento": "1991-02-01"
+        }
+    },
+    {
+        "model": "funcionario.funcionario",
+        "fields": {
+            "tipo_funcionario": 1,
+            "cpf": "123123123",
+            "nome": "mario",
+            "email": "mario@mario.com",
+            "telefone": "11999999999",
+            "data_nascimento": "1997-07-07"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_quarto",
+        "fields": {
+            "nome": "Misto"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_quarto",
+        "fields": {
+            "nome": "Masculino"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_quarto",
+        "fields": {
+            "nome": "Feminino"
+        }
+    },
+    {
+        "model": "quarto_cama.quarto",
+        "fields": {
+            "tipo_quarto": 1,
+            "nome": "exemplo quarto 1",
+            "descricao": "Quarto com AC"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_cama",
+        "fields": {
+            "nome": "Beliche Superior"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_cama",
+        "fields": {
+            "nome": "Beliche Inferior"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_cama",
+        "fields": {
+            "nome": "Solteiro"
+        }
+    },
+    {
+        "model": "quarto_cama.tipo_cama",
+        "fields": {
+            "nome": "Casal"
+        }
+    },
+    {
+        "model": "quarto_cama.cama",
+        "fields": {
+            "tipo_cama": 1,
+            "quarto": 1,
+            "status": "l",
+            "nome": "Cama exemplo 1",
+            "descricao": "Cama Superior da beliche do quarto exemplo 1",
+            "valor": 12.5
+        }
+    }
+]
