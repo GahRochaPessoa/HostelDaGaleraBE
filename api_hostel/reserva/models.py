@@ -6,6 +6,8 @@ from api_hostel.quarto_cama.models import *
 class reserva(models.Model):
     hospede = models.ForeignKey(hospede, on_delete=models.CASCADE)
     funcionario = models.ForeignKey(funcionario, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.hospede, self.funcionario
     
 
 class status_reserva(models.Model):
@@ -21,3 +23,6 @@ class reserva_cama(models.Model):
     status_reserva = models.ForeignKey(status_reserva, on_delete=models.DO_NOTHING)
     inicio = models.DateField()
     fim = models.DateField()
+
+    def __str__(self):
+        return self.cama, self.reserva, self.status_reserva, self.inicio, self.fim
