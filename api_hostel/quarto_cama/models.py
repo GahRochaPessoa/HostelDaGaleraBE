@@ -38,4 +38,4 @@ class cama(models.Model):
     valor = models.FloatField()
 
     def __str__(self):
-        return self.tipo_cama, self.quarto, self.status, self.nome, self.descricao, self.valor
+        return self.nome

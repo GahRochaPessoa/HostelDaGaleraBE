@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from api_hostel.pagamento.models import *
+from api_hostel.pagamento.serializers import *
 
-# Create your views here.
+
+class pagamentoViewSet(viewsets.ModelViewSet):
+    queryset = pagamento.objects.all()
+    serializer_class = PagamentoSerializer
