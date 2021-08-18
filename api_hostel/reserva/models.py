@@ -7,7 +7,8 @@ class reserva(models.Model):
     hospede = models.ForeignKey(hospede, on_delete=models.CASCADE)
     funcionario = models.ForeignKey(funcionario, on_delete=models.CASCADE)
     def __str__(self):
-        return('Hospede: ' + self.hospede.nome + ' | ' + 'Funcionario: ' + self.funcionario.nome)
+        nome = 'Hospede: ' + self.hospede.nome + ' | ' + 'Funcionario: ' + self.funcionario.nome
+        return(nome)
 
 class status_reserva(models.Model):
     descricao = models.CharField(max_length=100)

@@ -14,7 +14,7 @@ class quarto(models.Model):
     descricao = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.tipo_quarto, self.nome, self.descricao
+        return self.nome
 
 
 class tipo_cama(models.Model):
